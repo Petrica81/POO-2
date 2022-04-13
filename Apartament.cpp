@@ -36,26 +36,21 @@ void Apartament::print(std::ostream &os) const{
     std::cout<<"si admira privelistea de la etajul "<<etaj<<".\n";
 }
 
-std::ostream &operator<<(std::ostream &os, Apartament &a1){
+std::ostream &operator<<(std::ostream &os,const Apartament &a1){
     a1.print(os);
     return os;
 }
 std::istream &operator>>(std::istream &is, Apartament &a1){
-    std::cout<<"Nume:";
-    std::string buf;
-    is>> buf;
-    a1.setnumeClient(buf);
-    std::cout<<"Suprafata utila:";
-    int x;
-    is>>x;
-    a1.setsuprafataUtila(x);
-    std::cout<<"Discount:";
-    float y;
-    is>>y;
-    a1.setdiscount(y);
-    std::cout<<"Suprafata curte:";
+    Locuinta *loc = &a1;
+    is>>loc;
+    std::cout<<"Etaj:";
     is>>a1.etaj;
     return is;
+}
+Apartament &Apartament::operator=(const Apartament &ap){
+    (*this).Locuinta::operator=(ap);
+    this->etaj = ap.etaj;
+    return *this;
 }
 
 

@@ -52,15 +52,15 @@ Locuinta::Locuinta(std::string numeClient_, int suprafataUtila_, float discount_
         throw InvalidArea();
 }
 
-std::istream& operator>>(std::istream &is, Locuinta &l1){
+std::istream& operator>>(std::istream &is, Locuinta *l1){
     std::cout<<"Nume locuinta:";
     std::string buf;
     is>> buf;
-    l1.setnumeClient(buf);
+    l1->setnumeClient(buf);
     std::cout<<"Suprafata utila:";
-    is>>l1.suprafataUtila;
+    is>>l1->suprafataUtila;
     std::cout<<"Discount:";
-    is>>l1.discount;
+    is>>l1->discount;
     return is;
 }
 
@@ -76,6 +76,14 @@ std::ostream& operator<<(std::ostream &os, Locuinta &l1){
 bool Locuinta::operator==(const Locuinta &rhs) const{
     return (numeClient.compare(rhs.numeClient) == 0) && (discount == rhs.discount) &&  (suprafataUtila == rhs.suprafataUtila);
 }
+
+Locuinta &Locuinta::operator=(const Locuinta &loc) {
+    this->numeClient = loc.numeClient;
+    this->suprafataUtila = loc.suprafataUtila;
+    this->discount = loc.discount;
+    return *this;
+}
+
 
 void Locuinta::print(std::ostream &os) const {
     os <<"de "<<suprafataUtila<<"mp cu "<<discount<<"% discount "<<"locuieste "<<numeClient<<" ";

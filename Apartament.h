@@ -19,9 +19,11 @@ public:
 
     void print(std::ostream &os) const override;
 
-    friend std::ostream &operator<<(std::ostream &os, Apartament &a1);
+    friend std::ostream &operator<<(std::ostream &os,const Apartament &a1);
 
     friend std::istream &operator>>(std::istream &is, Apartament &a1);
+
+    Apartament& operator=(const Apartament &ap);
 };
 
 #endif

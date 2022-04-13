@@ -29,11 +29,13 @@ public:
 
     Locuinta(std::string numeClient_, int suprafataUtila_, float discount_);
 
-    friend std::istream& operator>>(std::istream &is, Locuinta &l1);
+    friend std::istream& operator>>(std::istream &is, Locuinta *l1);
 
     friend std::ostream& operator<<(std::ostream &os, Locuinta &l1);
 
     bool operator==(const Locuinta &rhs) const;
+
+    Locuinta& operator=(const Locuinta &loc);
 
     virtual void print(std::ostream &os) const;
 

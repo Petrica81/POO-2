@@ -36,25 +36,21 @@ void Casa::print(std::ostream &os) const{
     std::cout<<"si are o curte de "<<suprafataCurte<<"mp.\n";
 }
 
-std::ostream &operator<<(std::ostream &os, Casa &c1){
+std::ostream &operator<<(std::ostream &os,const Casa &c1){
     c1.print(os);
     return os;
 }
 
 std::istream &operator>>(std::istream &is, Casa &c1){
-    std::cout<<"Nume:";
-    std::string buf;
-    is>> buf;
-    c1.setnumeClient(buf);
-    std::cout<<"Suprafata utila:";
-    int x;
-    is>>x;
-    c1.setsuprafataUtila(x);
-    std::cout<<"Discount:";
-    float y;
-    is>>y;
-    c1.setdiscount(y);
+    Locuinta *loc = &c1;
+    is>>loc;
     std::cout<<"Suprafata curte:";
     is>>c1.suprafataCurte;
     return is;
+}
+
+Casa &Casa::operator=(const Casa &c){
+    (*this).Locuinta::operator=(c);
+    this->suprafataCurte = c.suprafataCurte;
+    return *this;
 }
