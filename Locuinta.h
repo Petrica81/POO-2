@@ -39,7 +39,7 @@ public:
 
     const virtual TipLoc getType() const = 0;
 
-    const virtual float calculchirie(int X, bool Y)const = 0;
+    const virtual int calculchirie(int X, bool Y)const = 0;
 
     virtual ~Locuinta() = default;
 

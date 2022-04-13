@@ -25,8 +25,9 @@ const TipLoc Apartament::getType() const{
     return TipLoc::Apartament;
 }
 
-const float Apartament::calculchirie(int X, bool Y)const {
-    float calcul = X * this->getsuprafataUtila() * (1-Y * this->getdiscount()/100.0);
+const int Apartament::calculchirie(int X, bool Y)const {
+    int calcul = X * this->getsuprafataUtila() * (1-Y * this->getdiscount()/100.0);
+    std::cout<<this->getnumeClient()<<" plateste la chirie "<<calcul<<" de lei.\n";
     return calcul;
 }
 void Apartament::print(std::ostream &os) const{

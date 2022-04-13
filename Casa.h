@@ -17,7 +17,7 @@ public:
 
     const TipLoc getType() const override;
 
-    const float calculchirie(int X, bool Y)const override;
+    const int calculchirie(int X, bool Y)const override;
 
     void print(std::ostream &os) const override;
 

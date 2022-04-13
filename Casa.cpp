@@ -24,8 +24,9 @@ const TipLoc Casa::getType() const {
     return TipLoc::Casa;
 }
 
-const float Casa::calculchirie(int X, bool Y) const {
-    float calcul = X*(this->getsuprafataUtila() +0.2*suprafataCurte) * (1-Y*this->getdiscount()/100.0);
+const int Casa::calculchirie(int X, bool Y) const {
+    int calcul = X*(this->getsuprafataUtila() +0.2*suprafataCurte) * (1-Y*this->getdiscount()/100.0);
+    std::cout<<this->getnumeClient()<<" plateste la chirie "<<calcul<<" de lei.\n";
     return calcul;
 }
 

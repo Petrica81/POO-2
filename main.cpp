@@ -39,6 +39,18 @@ public:
             std::cout << *apart;
         }
     }
+    static void printChirii(int X, bool Y){
+        for(auto &loc : locuinte){
+            if(loc->getType() == TipLoc::Apartament) {
+                auto apart = std::dynamic_pointer_cast<Apartament>(loc);
+                apart->calculchirie(X,Y);
+            }
+            if(loc->getType() == TipLoc::Casa) {
+                auto casa = std::dynamic_pointer_cast<Casa>(loc);
+                casa->calculchirie(X, Y);
+            }
+        }
+    }
 };
 
 std::vector<std::shared_ptr<Locuinta>> AgentieImobiliara::locuinte;
@@ -66,28 +78,36 @@ void inserare(){
 }
 void meniu(){
     int x;
-    std::cout<<"\nAlegeti optiunea:\n0.Inchidere meniu!\n1.Inserare locuinta noua.\n2.Listare locuinte din agentie.\n3.Listare case.\n4.Listare apartamente.\n";
+    std::cout<<"\nAlegeti optiunea:\n>=6.Inchidere meniu!\n1.Inserare locuinta noua.\n2.Listare locuinte din agentie.\n3.Listare case.\n4.Listare apartamente.\n5.Cat ar fi chiria?\n";
     std::cin>>x;
     if(x == 1) inserare();
     if(x == 2) {
         spatiere();
         AgentieImobiliara::printAllLoc();
-        //system("PAUSE");
+        system("PAUSE");
         meniu();
     }
     if(x == 3) {
         spatiere();
         AgentieImobiliara::printAllCase();
-        //system("PAUSE");
+        system("PAUSE");
         meniu();
     }
     if(x == 4) {
         spatiere();
         AgentieImobiliara::printAllApart();
-        //system("PAUSE");
+        system("PAUSE");
         meniu();
     }
-
+    if(x == 5){
+        int X, Y;
+        std::cout<<"Valoare pe mp:";std::cin>>X;
+        std::cout<<"Discount valabil?(1/0)";std::cin>>Y;
+        spatiere();
+        AgentieImobiliara::printChirii(X,Y);
+        system("pause");
+        meniu();
+    }
 }
 int main() {
     std::cout<<"Doresti cateva locuinte deja create?\n1.Da, imi este lene sa inserez eu altele.\n0.Nu,vreau sa ma chinui.\n";
