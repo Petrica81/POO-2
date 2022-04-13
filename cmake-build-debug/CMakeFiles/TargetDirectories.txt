@@ -1,0 +1,3 @@
+C:/Users/petri/Desktop/Facultate/POO/Tema_7_POO/cmake-build-debug/CMakeFiles/Tema_7_POO.dir
+C:/Users/petri/Desktop/Facultate/POO/Tema_7_POO/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/petri/Desktop/Facultate/POO/Tema_7_POO/cmake-build-debug/CMakeFiles/rebuild_cache.dir

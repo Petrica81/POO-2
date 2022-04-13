@@ -21,7 +21,9 @@ public:
 
     void print(std::ostream &os) const override;
 
-    friend std::ostream& operator<<(std::ostream &os, Casa &c1);
+    friend std::ostream &operator<<(std::ostream &os, Casa &c1);
+
+    friend std::istream &operator>>(std::istream &is, Casa &c1);
 };
 
 #endif
