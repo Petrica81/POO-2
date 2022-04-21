@@ -20,7 +20,7 @@ public:
 
     static void printAllLoc() {
         for(auto &loc : locuinte)
-            std::cout<<*loc;
+            std::cout<<loc;
     }
 
     static void printAllCase() {
@@ -78,7 +78,7 @@ void inserare(){
 }
 void meniu(){
     int x;
-    std::cout<<"\nAlegeti optiunea:\n>=6.Inchidere meniu!\n1.Inserare locuinta noua.\n2.Listare locuinte din agentie.\n3.Listare case.\n4.Listare apartamente.\n5.Cat ar fi chiria?\n";
+    std::cout<<"\nAlegeti optiunea:\n>=6.Inchidere meniu!\n1.Inserare locuinta noua.\n2.Listare locuinte.\n3.Listare case.\n4.Listare apartamente.\n5.Cat ar fi chiria?\n";
     std::cin>>x;
     if(x == 1) inserare();
     if(x == 2) {
@@ -125,6 +125,7 @@ int main() {
         spatiere();
     }
     meniu();
-
+//    Locuinta *A = new Casa;
+//    std::cout<<A;
     return 0;
 }

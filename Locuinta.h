@@ -31,7 +31,7 @@ public:
 
     friend std::istream& operator>>(std::istream &is, Locuinta *l1);
 
-    friend std::ostream& operator<<(std::ostream &os, Locuinta &l1);
+    friend std::ostream& operator<<(std::ostream &os, Locuinta *l1);
 
     bool operator==(const Locuinta &rhs) const;
 
@@ -39,9 +39,9 @@ public:
 
     virtual void print(std::ostream &os) const;
 
-    const virtual TipLoc getType() const = 0;
+    virtual TipLoc getType() const = 0;
 
-    const virtual int calculchirie(int X, bool Y)const = 0;
+    virtual int calculchirie(int X, bool Y)const = 0;
 
     virtual ~Locuinta() = default;
 

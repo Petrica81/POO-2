@@ -15,9 +15,9 @@ public:
 
     Casa(std::string numeClient_, int suprafataUtila_, float discount_, int suprafataCurte_);
 
-    const TipLoc getType() const override;
+    TipLoc getType() const override;
 
-    const int calculchirie(int X, bool Y)const override;
+    int calculchirie(int X, bool Y)const override;
 
     void print(std::ostream &os) const override;
 

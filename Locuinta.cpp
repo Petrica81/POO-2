@@ -1,8 +1,7 @@
 #include "Locuinta.h"
-#include "Casa.h"
-#include "Apartament.h"
 #include <iostream>
 #include <string>
+#include <utility>
 
 class InvalidArea : public std::exception {
 public:
@@ -26,7 +25,7 @@ float Locuinta::getdiscount() const{
 }
 
 void Locuinta::setnumeClient(std::string numeClient_){
-    numeClient = numeClient_;
+    numeClient = std::move(numeClient_);
 }
 
 void Locuinta::setsuprafataUtila(int suprafataUtila_){
@@ -64,17 +63,17 @@ std::istream& operator>>(std::istream &is, Locuinta *l1){
     return is;
 }
 
-std::ostream& operator<<(std::ostream &os, Locuinta &l1){
-    if(l1.numeClient.empty()){
+std::ostream& operator<<(std::ostream &os, Locuinta *l1){
+    if(l1->numeClient[0] == '\n'){
         os<<"Not initialized\n";
         return os;
     }
-    os<<"Nume client:"<<l1.numeClient<<"   Suprafata utila:"<<l1.suprafataUtila<<"   Discount:"<<l1.discount<<"\n";
+   l1->print(os);
     return os;
 }
 
 bool Locuinta::operator==(const Locuinta &rhs) const{
-    return (numeClient.compare(rhs.numeClient) == 0) && (discount == rhs.discount) &&  (suprafataUtila == rhs.suprafataUtila);
+    return (numeClient == rhs.numeClient) && (discount == rhs.discount) &&  (suprafataUtila == rhs.suprafataUtila);
 }
 
 Locuinta &Locuinta::operator=(const Locuinta &loc) {
@@ -84,8 +83,6 @@ Locuinta &Locuinta::operator=(const Locuinta &loc) {
     return *this;
 }
 
-
 void Locuinta::print(std::ostream &os) const {
-    os <<"de "<<suprafataUtila<<"mp cu "<<discount<<"% discount "<<"locuieste "<<numeClient<<" ";
 }
 

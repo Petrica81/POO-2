@@ -2,6 +2,7 @@
 #include "Locuinta.h"
 #include <string>
 #include <iostream>
+#include <utility>
 
 int Casa::getsuprafataCurte() const{
     return this->suprafataCurte;
@@ -16,24 +17,24 @@ Casa::Casa()
     this->suprafataCurte = 0;
 }
 Casa::Casa(std::string numeClient_, int suprafataUtila_, float discount_, int suprafataCurte_)
-        : Locuinta(numeClient_, suprafataUtila_, discount_) {
+        : Locuinta(std::move(numeClient_), suprafataUtila_, discount_) {
     this->suprafataCurte = suprafataCurte_;
 }
 
-const TipLoc Casa::getType() const {
+TipLoc Casa::getType() const {
     return TipLoc::Casa;
 }
 
-const int Casa::calculchirie(int X, bool Y) const {
-    int calcul = X*(this->getsuprafataUtila() +0.2*suprafataCurte) * (1-Y*this->getdiscount()/100.0);
+int Casa::calculchirie(int X, bool Y) const {
+    int calcul = (int)(X*(this->getsuprafataUtila() +0.2*suprafataCurte) * (1-Y*this->getdiscount()/100.0));
     std::cout<<this->getnumeClient()<<" plateste la chirie "<<calcul<<" de lei.\n";
     return calcul;
 }
 
 void Casa::print(std::ostream &os) const{
-    std::cout<<"In casa ";
-    Locuinta::print(os);
-    std::cout<<"si are o curte de "<<suprafataCurte<<"mp.\n";
+    os<<"In casa ";
+    os<<"de "<<this->getsuprafataUtila()<<"mp cu "<<this->getdiscount()<<"% discount "<<"locuieste "<<this->getnumeClient()<<" ";
+    os<<"si are o curte de "<<suprafataCurte<<"mp.\n";
 }
 
 std::ostream &operator<<(std::ostream &os,const Casa &c1){

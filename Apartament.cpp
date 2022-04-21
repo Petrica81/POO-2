@@ -2,6 +2,7 @@
 #include "Locuinta.h"
 #include <string>
 #include <iostream>
+#include <utility>
 
 int Apartament::getetaj() const{
     return this->etaj;
@@ -17,23 +18,23 @@ Apartament::Apartament()
 }
 
 Apartament::Apartament(std::string numeClient_, int suprafataUtila_, float discount_, int etaj_)
-                : Locuinta(numeClient_, suprafataUtila_, discount_) {
+                : Locuinta(std::move(numeClient_), suprafataUtila_, discount_) {
     this->etaj = etaj_;
 }
 
-const TipLoc Apartament::getType() const{
+TipLoc Apartament::getType() const{
     return TipLoc::Apartament;
 }
 
-const int Apartament::calculchirie(int X, bool Y)const {
-    int calcul = X * this->getsuprafataUtila() * (1-Y * this->getdiscount()/100.0);
+int Apartament::calculchirie(int X, bool Y)const {
+    int calcul = (int)(X * this->getsuprafataUtila() * (1-Y * this->getdiscount()/100.0));
     std::cout<<this->getnumeClient()<<" plateste la chirie "<<calcul<<" de lei.\n";
     return calcul;
 }
 void Apartament::print(std::ostream &os) const{
-    std::cout<<"In apartamentul ";
-    Locuinta::print(os);
-    std::cout<<"si admira privelistea de la etajul "<<etaj<<".\n";
+    os<<"In apartamentul ";
+    os<<"de "<<this->getsuprafataUtila()<<"mp cu "<<this->getdiscount()<<"% discount "<<"locuieste "<<this->getnumeClient()<<" ";
+    os<<"si admira privelistea de la etajul "<<etaj<<".\n";
 }
 
 std::ostream &operator<<(std::ostream &os,const Apartament &a1){
